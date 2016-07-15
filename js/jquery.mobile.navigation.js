@@ -600,10 +600,11 @@ define( [
 
 	/* exposed $.mobile methods */
 
+    var animationEndEvent = "WebKitTransitionEvent" in window ? "webkitAnimationEnd" : "animationend";
 	//animation complete callback
 	$.fn.animationComplete = function( callback ) {
 		if ( $.support.cssTransitions ) {
-			return $( this ).one( 'webkitAnimationEnd animationend', callback );
+			return $( this ).one( animationEndEvent, callback );
 		}
 		else{
 			// defer execution for consistency between webkit/non webkit
